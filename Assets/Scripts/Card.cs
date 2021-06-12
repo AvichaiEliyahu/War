@@ -27,12 +27,6 @@ public class Card : MonoBehaviour, IComparable<Card>
     {
         int randomIndex = UnityEngine.Random.Range(1, numOfAnimations+1);
         animator.SetTrigger("anim"+randomIndex);
-        //Invoke("Disable", 2f);
-    }
-
-    void Disable()
-    {
-        enabled = false;
     }
 
     public int CompareTo(Card other)

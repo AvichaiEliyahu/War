@@ -48,22 +48,24 @@ public class MainCanvas : MonoBehaviour
 
     void UpdateWarWinnerTextCoroutine(Pack winner, int numOfCardsWon)
     {
+        // text for war winner
         StartCoroutine(UpdateWarWinnerText(winner,numOfCardsWon));
     }
 
     void UpdateWarTextCoroutine()
     {
+        // text for war mode
         StartCoroutine(UpdateWarText());
     }
 
     void UpdateFlowTextCoroutine(Pack winner, Pack loser)
     {
+        // winner and loser text for every round
         StartCoroutine(UpdateTexts(winner,loser));
     }
 
     IEnumerator UpdateTexts(Pack winner, Pack loser)
     {
-
         int randomWinningTextIndex = Random.Range(0,winningTexts.Length);
         mainText.SetText(winner.GetPlayerName()+" " +winningTexts[randomWinningTextIndex]);
 

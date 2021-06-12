@@ -75,11 +75,11 @@ public class MyGameManager : MonoBehaviour
         switch (result)
         {
             case 1:
-                AddCardsToWinner(p1, cardsForWinner);
+                AddCardsToWinner(p1, cardsForWinner); // player1 won
                 OnChooseWinner(p1, p2);
                 break;
             case -1:
-                AddCardsToWinner(p2, cardsForWinner);
+                AddCardsToWinner(p2, cardsForWinner); // player2 won
                 OnChooseWinner(p2,p1);
                 break;
             case 0:
@@ -102,6 +102,7 @@ public class MyGameManager : MonoBehaviour
 
         atWar = true;
         isPressable = false;
+
         yield return new WaitForSecondsRealtime(pressCooldown);
         Card[] bonusCards = InstantiateAndReturnTwoCards(); // pull two cards that will be the bonus cards
         AddTwoCardsToList(warCardsList, bonusCards);
