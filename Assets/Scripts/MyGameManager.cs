@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MyGameManager : MonoBehaviour
 {
+    int minNumOfCards = 4;
+
     [SerializeField] Pack p1;
     [SerializeField] Pack p2;
 
@@ -107,6 +109,7 @@ public class MyGameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(pressCooldown);
         Card[] warCards = InstantiateAndReturnTwoCards(); // pull two cards that will be compared, to declare the war winner
         AddTwoCardsToList(warCardsList, warCards);
+
         int result = CompareCards(warCards[0], warCards[1]);
         if (result == 0) // equal cards
             StartCoroutine(War(warCardsList)); // go to war again, with the same list of cards. more will be added in the next war.
@@ -166,11 +169,11 @@ public class MyGameManager : MonoBehaviour
         int p2NumOfCards = p2.GetNumOfCards();
         int winner;
 
-        if (p1NumOfCards > 4 && p2NumOfCards > 4) // no one wins
+        if (p1NumOfCards > minNumOfCards && p2NumOfCards > minNumOfCards) // no one wins
             return;
         // if one player drops below 4 cards, the other player wins
         // if they are both below four cards, the player with more cards wins
-        if (p1NumOfCards < 4 || p2NumOfCards < 4)
+        if (p1NumOfCards < minNumOfCards || p2NumOfCards < minNumOfCards)
         {
             winner = Mathf.Max(p1NumOfCards, p2NumOfCards);
             if (winner == p1NumOfCards)
