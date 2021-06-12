@@ -1116,7 +1116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -107, y: 32}
+  m_AnchoredPosition: {x: -107, y: 64}
   m_SizeDelta: {x: 214.47308, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &727904105
@@ -1487,7 +1487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.5417365, y: -0, z: -0, w: 0.8405484}
-  m_LocalPosition: {x: -7.3, y: 23.3, z: -5.1}
+  m_LocalPosition: {x: -7.9, y: 25.8, z: -6.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1523,7 +1523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3434739024761312767, guid: f8a59f4e9fdd7a54e811e96aa28d43b7, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 16.851
       objectReference: {fileID: 0}
     - target: {fileID: 3434739024761312767, guid: f8a59f4e9fdd7a54e811e96aa28d43b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2012,7 +2012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb047afa847eb54aa89da0f625382c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeOnScreen: 1.5
+  timeOnScreen: 2
   winningTexts:
   - well done!
   - good job!
@@ -2294,7 +2294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 84, y: -45.1}
+  m_AnchoredPosition: {x: 84, y: -70}
   m_SizeDelta: {x: 214.47308, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1758418427
