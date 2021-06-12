@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class Pack : MonoBehaviour
 {
+    [SerializeField] string playerName = "PLAYER";
+    [SerializeField] List<Card> pack;
+
+    // using deligate to inform the GameManager that the pack of cards is clicked
     public delegate void ClickAction();
     public static event ClickAction OnClicked;
 
-    [SerializeField] List<Card> pack;
-    // Start is called before the first frame update
     void Start()
     {
-       // Shuffle();
+        Shuffle();
     }
 
     private void Shuffle()
@@ -41,6 +43,11 @@ public class Pack : MonoBehaviour
     public int GetNumOfCards()
     {
         return pack.Count;
+    }
+
+    public string GetPlayerName()
+    {
+        return playerName;
     }
 
     private void OnMouseDown()

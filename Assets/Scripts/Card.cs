@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour, IComparable<Card>
 {
-    int numOfAnimations = 3;
+    int numOfAnimations = 4;
     [SerializeField] [Range(2, 14)] int level;
     Animator animator;
 
