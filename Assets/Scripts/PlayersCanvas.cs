@@ -10,12 +10,12 @@ public class PlayersCanvas : MonoBehaviour
 
     private void OnEnable()
     {
-        MyGameManager.UpdateScore += UpdateScore;
+        MyGameManager.OnScoreUpdate += UpdateScore;
     }
 
     private void OnDisable()
     {
-        MyGameManager.UpdateScore -= UpdateScore;
+        MyGameManager.OnScoreUpdate -= UpdateScore;
     }
 
     void Start()
@@ -27,7 +27,7 @@ public class PlayersCanvas : MonoBehaviour
 
     void UpdateScore(int p1NumOfCards, int p2NumOfCards)
     {
-        player1CardsText.SetText("Player1: "+p1NumOfCards);
-        player2CardsText.SetText("Player2: "+p2NumOfCards);
+        player1CardsText.SetText("Player1:\n"+p1NumOfCards + " cards left");
+        player2CardsText.SetText("Player2:\n"+p2NumOfCards + " cards left");
     }
 }

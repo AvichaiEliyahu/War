@@ -20,18 +20,18 @@ public class MainCanvas : MonoBehaviour
 
     private void OnEnable()
     {
-        MyGameManager.UpdateText += UpdateFlowTextCoroutine;
-        MyGameManager.UpdateWarText += UpdateWarTextCoroutine;
-        MyGameManager.UpdateWarWinnerText += UpdateWarWinnerTextCoroutine;
-        MyGameManager.UpdateGameWinnerText += UpdateGameWinnerText;
+        MyGameManager.OnChooseWinner += UpdateFlowTextCoroutine;
+        MyGameManager.OnWarStart += UpdateWarTextCoroutine;
+        MyGameManager.OnWarWin += UpdateWarWinnerTextCoroutine;
+        MyGameManager.OnGameWinner += UpdateGameWinnerText;
     }
 
     private void OnDisable()
     {
-        MyGameManager.UpdateText -= UpdateFlowTextCoroutine;
-        MyGameManager.UpdateWarText -= UpdateWarTextCoroutine;
-        MyGameManager.UpdateWarWinnerText -= UpdateWarWinnerTextCoroutine;
-        MyGameManager.UpdateGameWinnerText -= UpdateGameWinnerText;
+        MyGameManager.OnChooseWinner -= UpdateFlowTextCoroutine;
+        MyGameManager.OnWarStart -= UpdateWarTextCoroutine;
+        MyGameManager.OnWarWin -= UpdateWarWinnerTextCoroutine;
+        MyGameManager.OnGameWinner -= UpdateGameWinnerText;
     }
 
     void Start()
@@ -43,6 +43,7 @@ public class MainCanvas : MonoBehaviour
 
         mainText.SetText("Press a card pack to start");
         subtext.SetText("You know the rules, right?");
+        warText.SetText("");
     }
 
     void UpdateWarWinnerTextCoroutine(Pack winner, int numOfCardsWon)
@@ -75,10 +76,10 @@ public class MainCanvas : MonoBehaviour
 
     IEnumerator UpdateWarText()
     {
-        warText.SetText("WAR");
+        warText.SetText("WAR\nPRESS DISABLED");
         mainText.SetText(startWarText);
         subtext.SetText(startWarSubtext);
-        yield return new WaitForSecondsRealtime(timeOnScreen);
+        yield return new WaitForSecondsRealtime(timeOnScreen*3);
         warText.SetText("");
         EmptyTextboxes();
     }

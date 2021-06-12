@@ -13,20 +13,20 @@ public class MyGameManager : MonoBehaviour
     bool isPressable = true; // a few seconds of cooldown required before next press
     bool atWar = false;
 
-    public delegate void UpdateScoreAction(int p1NumOfCards, int p2NumOfCards);
-    public static event UpdateScoreAction UpdateScore;
+    public delegate void ScoreUpdateAction(int p1NumOfCards, int p2NumOfCards);
+    public static event ScoreUpdateAction OnScoreUpdate;
 
-    public delegate void UpdateTextAction(Pack winner, Pack loser);
-    public static event UpdateTextAction UpdateText;
+    public delegate void ChooseWinnerAction(Pack winner, Pack loser);
+    public static event ChooseWinnerAction OnChooseWinner;
 
-    public delegate void UpdateWarTextAction();
-    public static event UpdateWarTextAction UpdateWarText;
+    public delegate void WarStartAction();
+    public static event WarStartAction OnWarStart;
 
-    public delegate void UpdateWarWinnerTextAction(Pack winner, int numOfCards);
-    public static event UpdateWarWinnerTextAction UpdateWarWinnerText;
+    public delegate void WarWinAction(Pack winner, int numOfCards);
+    public static event WarWinAction OnWarWin;
 
-    public delegate void UpdateGameWinnerTextAction(Pack winner);
-    public static event UpdateGameWinnerTextAction UpdateGameWinnerText;
+    public delegate void GameWinnerAction(Pack winner);
+    public static event GameWinnerAction OnGameWinner;
 
     private void OnEnable()
     {
@@ -48,8 +48,8 @@ public class MyGameManager : MonoBehaviour
     {
         isPressable = false; // disable pressing
 
-        if (UpdateScore != null)
-            UpdateScore(p1.GetNumOfCards(), p2.GetNumOfCards()); // update the score GUI using an event
+        if (OnScoreUpdate != null)
+            OnScoreUpdate(p1.GetNumOfCards(), p2.GetNumOfCards()); // update the score GUI using an event
 
         Card[] currentCards = InstantiateAndReturnTwoCards(); // get two cards from top of each pack
 
@@ -76,11 +76,11 @@ public class MyGameManager : MonoBehaviour
         {
             case 1:
                 AddCardsToWinner(p1, cardsForWinner);
-                UpdateText(p1, p2);
+                OnChooseWinner(p1, p2);
                 break;
             case -1:
                 AddCardsToWinner(p2, cardsForWinner);
-                UpdateText(p2,p1);
+                OnChooseWinner(p2,p1);
                 break;
             case 0:
                 StartCoroutine(War(cardsForWinner)); // go to war with the current two cards. more cards to be added during the war
@@ -97,8 +97,8 @@ public class MyGameManager : MonoBehaviour
         // on to the next iteration of war, so that the cards in it will be passed to the
         // winner when the war ends.
         
-        if (UpdateWarText != null)
-            UpdateWarText();
+        if (OnWarStart != null)
+            OnWarStart();
 
         atWar = true;
         isPressable = false;
@@ -116,15 +116,15 @@ public class MyGameManager : MonoBehaviour
         else if (result == 1)
         {
             AddCardsToWinner(p1, warCardsList);
-            UpdateWarWinnerText(p1, warCardsList.Count);
+            OnWarWin(p1, warCardsList.Count);
         }
         else
         {
             AddCardsToWinner(p2, warCardsList);
-            UpdateWarWinnerText(p2, warCardsList.Count);
+            OnWarWin(p2, warCardsList.Count);
         }
-        if (UpdateScore != null)
-            UpdateScore(p1.GetNumOfCards(), p2.GetNumOfCards()); // update the score GUI using an event
+        if (OnScoreUpdate != null)
+            OnScoreUpdate(p1.GetNumOfCards(), p2.GetNumOfCards()); // update the score GUI using an event
 
         atWar = false;
         isPressable = true;
@@ -177,9 +177,9 @@ public class MyGameManager : MonoBehaviour
         {
             winner = Mathf.Max(p1NumOfCards, p2NumOfCards);
             if (winner == p1NumOfCards)
-                UpdateGameWinnerText(p1);
+                OnGameWinner(p1);
             else
-                UpdateGameWinnerText(p2);
+                OnGameWinner(p2);
             isPressable = false;
         }
     }
