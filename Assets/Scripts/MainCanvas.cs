@@ -40,6 +40,9 @@ public class MainCanvas : MonoBehaviour
         mainText = texts[0];
         subtext = texts[1];
         warText = texts[2];
+
+        mainText.SetText("Press a card pack to start");
+        subtext.SetText("You know the rules, right?");
     }
 
     void UpdateWarWinnerTextCoroutine(Pack winner, int numOfCardsWon)
